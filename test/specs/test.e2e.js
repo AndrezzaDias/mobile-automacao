@@ -2,6 +2,7 @@ const { expect }  = require('chai')
 const LoginPage   = require('../pageobjects/login.page')
 const SignUpPage  = require('../pageobjects/signup.page')
 const DragPage    = require('../pageobjects/drag.page')
+const FormsPage   = require('../pageobjects/forms.page')
 const users       = require('../data/users.json')
 
 describe('Testes do App WDIO Demo', () => {
@@ -49,14 +50,19 @@ describe('Testes do App WDIO Demo', () => {
     const title = await LoginPage.validateSuccessPopup()
     expect(title).to.equal('Success')
   })
-  it.only('CT07 - Drag and Drop de peça para o destino', async () => {
-  
-    await DragPage.navigateTo();
-
-    await DragPage.dragAndDrop();
-
-    const target = await DragPage.dropTarget
-    expect(await target.isDisplayed()).to.be.true
+  it('CT07 - Drag and Drop de todas as peças para os destinos corretos', async () => {
+  await DragPage.navigateTo()
+  await DragPage.dragAndDropAll()
+  const retryButton = await DragPage.retryButton
+  await retryButton.waitForDisplayed({ timeout: 8000 })
+  expect(await retryButton.isDisplayed()).to.be.true
   })
-
+ 
+  it.only(`${input.ct} - Preencher formulário com ${input.descricao}`, async () => {
+  await FormsPage.navigateTo()
+  await FormsPage.fillAndSubmit(users.formInputs[0].value)
+  const message = await FormsPage.validateMessagePopup()
+  expect(message).to.equal('This button is active')
+  })
+  
 })

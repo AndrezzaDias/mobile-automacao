@@ -36,5 +36,17 @@
       "errorXpath": "//android.widget.TextView[@text='Please enter a valid email address']",
       "errorMessage": "Please enter a valid email address"
     }
+  ],
+    "formInputs": [
+    {
+      "ct": "CT08",
+      "descricao": "texto simples",
+      "value": "Olá Mundo"
+    },
+    {
+      "ct": "CT08b",
+      "descricao": "texto com caracteres especiais",
+      "value": "Test@#123!"
+    }
   ]
 }
