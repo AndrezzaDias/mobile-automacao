@@ -1,0 +1,40 @@
+{
+  "validUser": {
+    "email": "teste@carrefour.com",
+    "password": "Test@1234"
+  },
+  "newUser": {
+    "email": "novo@carrefour.com",
+    "password": "Test@1234",
+    "confirmPassword": "Test@1234"
+  },
+  "invalidUsers": [
+    {
+      "ct": "CT03",
+      "descricao": "senha menor que 8 caracteres",
+      "email": "teste2@carrefour.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "errorXpath": "//android.widget.TextView[@text='Please enter at least 8 characters']",
+      "errorMessage": "Please enter at least 8 characters"
+    },
+    {
+      "ct": "CT04",
+      "descricao": "senhas diferentes",
+      "email": "teste3@carrefour.com",
+      "password": "Test@1234",
+      "confirmPassword": "Test@9999",
+      "errorXpath": "//android.widget.TextView[@text='Please enter the same password']",
+      "errorMessage": "Please enter the same password"
+    },
+    {
+      "ct": "CT05",
+      "descricao": "email inválido",
+      "email": "emailinvalido",
+      "password": "Test@1234",
+      "confirmPassword": "Test@1234",
+      "errorXpath": "//android.widget.TextView[@text='Please enter a valid email address']",
+      "errorMessage": "Please enter a valid email address"
+    }
+  ]
+}

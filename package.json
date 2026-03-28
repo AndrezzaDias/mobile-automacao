@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test:local": "wdio run wdio.conf.js",
     "test:browserstack": "wdio run wdio.browserstack.conf.js",
     "report": "allure generate allure-results --clean -o allure-report && allure open allure-report"
   },
