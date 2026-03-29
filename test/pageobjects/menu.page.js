@@ -14,7 +14,7 @@ class MenuPage extends BasePage {
 
   async navigateTo() {
     await this.click(await this.menuTab)
-    await driver.pause(1500)
+    await driver.pause(3000)
   }
 }
 

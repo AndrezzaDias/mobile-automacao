@@ -12,11 +12,13 @@ class LoginPage extends BasePage {
     await this.click(await this.loginTab)
   }
   async login(email, password) {
-    await this.setValue(await this.emailField, email)
-    await this.setValue(await this.passwordField, password)
-    await this.click(await this.loginButton)
-    await driver.pause(2000)
-  }
+  await this.setValue(await this.emailField, email)
+  await this.setValue(await this.passwordField, password)
+  await this.hideKeyboard() // ← só aqui, depois de tudo preenchido
+  await driver.pause(500)
+  await this.click(await this.loginButton)
+  await driver.pause(2500)
+}
   async goToSignUp() {
     await this.click(await this.signUpLink)
   }

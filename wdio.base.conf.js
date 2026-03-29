@@ -54,4 +54,4 @@ exports.config = {
       await browser.takeScreenshot();
     }
   },
-};
+}
