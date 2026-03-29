@@ -5,7 +5,7 @@ exports.config = {
   ...baseConfig,
 
   user: process.env.BROWSERSTACK_USER,
-  key:  process.env.BROWSERSTACK_KEY,
+  key:  process.env.BROWSERSTACK_KEY, 
 
   hostname: 'hub.browserstack.com',
   port: 443,
