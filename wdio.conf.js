@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 exports.config = {
   ...require('./wdio.base.conf').config,
@@ -19,4 +19,4 @@ exports.config = {
     'appium:appWaitActivity': '*',
     'appium:noReset': false,
   }],
-};
+}
