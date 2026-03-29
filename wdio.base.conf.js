@@ -22,14 +22,9 @@ exports.config = {
     ui: 'bdd',
     timeout: 120000,
   },
-  afterTest: async function (test, context, { error }) {
-    if (error) {
-      const fs = require('fs');
-      const screenshot = await browser.takeScreenshot();
-      const dir = './test/screenshots';
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      const name = test.title.replace(/\s+/g, '_') + '_' + Date.now() + '.png';
-      fs.writeFileSync(`${dir}/${name}`, screenshot, 'base64');
+  afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+    if (!passed) {
+      await browser.takeScreenshot();
     }
   },
 };
