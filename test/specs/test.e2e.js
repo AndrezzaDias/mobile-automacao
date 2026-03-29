@@ -33,18 +33,20 @@ describe('Testes do App WDIO Demo', () => {
   })
 
   users.invalidUsers.forEach((user) => {
-    it(`${user.ct} - Erro ao cadastrar com ${user.descricao}`, async () => {
-      await LoginPage.navigateTo()
-      await LoginPage.goToSignUp()
-      await SignUpPage.fillForm(
-        user.email,
-        user.password,
-        user.confirmPassword
-      )
-      const errorText = await SignUpPage.getErrorMessage(user.errorXpath)
-      expect(errorText).to.equal(user.errorMessage)
-    })
+  it(`${user.ct} - Erro ao cadastrar com ${user.descricao}`, async () => {
+    await LoginPage.navigateTo()
+    await driver.pause(1500)
+    await LoginPage.goToSignUp()
+    await driver.pause(2000)
+    await SignUpPage.fillForm(
+      user.email,
+      user.password,
+      user.confirmPassword
+    );
+    const errorText = await SignUpPage.getErrorMessage(user.errorXpath)
+    expect(errorText).to.equal(user.errorMessage)
   })
+})
  it('CT06 - Login com sucesso', async () => {
   await LoginPage.navigateTo()
   await LoginPage.login(
@@ -54,7 +56,7 @@ describe('Testes do App WDIO Demo', () => {
   const title = await LoginPage.validateSuccessPopup()
   expect(title).to.equal('Success')
   await driver.hideKeyboard().catch(() => {})
-  await driver.pressKeyCode(4).catch(() => {}) // BACK fecha teclado se ainda aberto
+  await driver.pressKeyCode(4).catch(() => {}) 
   await driver.pause(1500)
 })
 
@@ -104,6 +106,9 @@ describe('Testes do App WDIO Demo', () => {
     expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
     expect(await SwipePage.card1.isDisplayed()).to.be.true
     await SwipePage.swipeAndValidate(users.swipeSteps)
+    
+    const card2 = await SwipePage.card2
+    await card2.waitForDisplayed({ timeout: 10000 })
     expect(await SwipePage.card2.isDisplayed()).to.be.true
   })
 

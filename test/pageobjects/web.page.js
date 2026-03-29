@@ -13,7 +13,7 @@ class WebPage extends BasePage {
 
   async scrollToBottom(scrolls) {
     for (const s of scrolls) {
-      await driver.action('pointer')
+      await driver.action('pointer', { parameters: { pointerType: 'touch' } })
         .move({ duration: 0, x: s.x1, y: s.y1 })
         .down({ button: 0 })
         .move({ duration: 1000, x: s.x2, y: s.y2 })

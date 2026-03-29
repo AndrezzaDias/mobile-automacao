@@ -18,8 +18,6 @@ class FormsPage extends BasePage {
     await this.click(await this.formsTab)
     await this.waitForDisplayed(await this.pageTitle)
   }
-
-  // NOVO — fecha teclado clicando no título da tela (sempre visível no Forms)
   async dismissKeyboard() {
     try {
       await driver.hideKeyboard()
