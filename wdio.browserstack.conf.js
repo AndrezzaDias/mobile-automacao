@@ -22,7 +22,7 @@ exports.config = {
       },
     }],
   ],
-
+  
   capabilities: [
     {
       platformName: 'Android',
