@@ -37,16 +37,35 @@
       "errorMessage": "Please enter a valid email address"
     }
   ],
-    "formInputs": [
-    {
-      "ct": "CT08",
-      "descricao": "texto simples",
-      "value": "Olá Mundo"
-    },
-    {
-      "ct": "CT08b",
-      "descricao": "texto com caracteres especiais",
-      "value": "Test@#123!"
-    }
-  ]
+  "formData": {
+    "inputText": "Teste",
+    "expectedResult": "Teste",
+    "expectedSwitchText": "Click to turn the switch OFF",
+    "dropdownOption": "Appium is awesome",
+    "expectedAlertTitle": "This button is"
+  },
+  "webScrolls": [
+  { "x1": 277, "y1": 1938, "x2": 389, "y2": 981  },
+  { "x1": 73,  "y1": 1968, "x2": 235, "y2": 1035 },
+  { "x1": 473, "y1": 1929, "x2": 439, "y2": 657  },
+  { "x1": 548, "y1": 1980, "x2": 548, "y2": 548  },
+  { "x1": 775, "y1": 2105, "x2": 808, "y2": 514  },
+  { "x1": 632, "y1": 2083, "x2": 607, "y2": 551  },
+  { "x1": 587, "y1": 1946, "x2": 526, "y2": 336  },
+  { "x1": 601, "y1": 1985, "x2": 646, "y2": 330  },
+  { "x1": 484, "y1": 2075, "x2": 528, "y2": 492  },
+  { "x1": 417, "y1": 2111, "x2": 481, "y2": 626  },
+  { "x1": 559, "y1": 1946, "x2": 570, "y2": 411  },
+  { "x1": 646, "y1": 2066, "x2": 668, "y2": 534  },
+  { "x1": 498, "y1": 2022, "x2": 554, "y2": 459  },
+  { "x1": 582, "y1": 1994, "x2": 576, "y2": 526  },
+  { "x1": 668, "y1": 1915, "x2": 649, "y2": 512  }
+  ],
+  "swipeSteps": [
+  { "x1": 861, "y1": 1868, "x2": 31,  "y2": 1848, "text": "FULLY OPEN SOURCE" },
+  { "x1": 881, "y1": 1851, "x2": 73,  "y2": 1857, "text": "GREAT COMMUNITY"   },
+  { "x1": 889, "y1": 1851, "x2": 53,  "y2": 1831, "text": "JS.FOUNDATION"     },
+  { "x1": 867, "y1": 1784, "x2": 45,  "y2": 1815, "text": "EXTENDABLE"        },
+  { "x1": 872, "y1": 1795, "x2": 103, "y2": 1792, "text": "COMPATIBLE"        }
+]
 }

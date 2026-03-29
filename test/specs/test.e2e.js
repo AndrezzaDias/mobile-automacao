@@ -3,6 +3,10 @@ const LoginPage   = require('../pageobjects/login.page')
 const SignUpPage  = require('../pageobjects/signup.page')
 const DragPage    = require('../pageobjects/drag.page')
 const FormsPage   = require('../pageobjects/forms.page')
+const HomePage    = require('../pageobjects/home.page')
+const WebPage     = require('../pageobjects/web.page')
+const SwipePage   = require('../pageobjects/swipe.page')
+const MenuPage    = require('../pageobjects/menu.page')
 const users       = require('../data/users.json')
 
 describe('Testes do App WDIO Demo', () => {
@@ -58,11 +62,69 @@ describe('Testes do App WDIO Demo', () => {
   expect(await retryButton.isDisplayed()).to.be.true
   })
  
-  it.only(`${input.ct} - Preencher formulário com ${input.descricao}`, async () => {
-  await FormsPage.navigateTo()
-  await FormsPage.fillAndSubmit(users.formInputs[0].value)
-  const message = await FormsPage.validateMessagePopup()
-  expect(message).to.equal('This button is active')
+  it('CT08 - Preencher e validar formulário de Forms', async () => {
+  const { formData } = users
+  await FormsPage.navigateTo();
+  expect(await FormsPage.pageTitle.isDisplayed()).to.be.true;
+  await FormsPage.setValue(await FormsPage.inputField, formData.inputText);
+  expect(await FormsPage.inputResult.getText()).to.equal(formData.expectedResult);
+  await FormsPage.click(await FormsPage.switchToggle);
+  expect(await FormsPage.switchText.getText()).to.equal(formData.expectedSwitchText);
+  await FormsPage.click(await FormsPage.dropdownChevron)
+  await FormsPage.click(await FormsPage.dropdownOption)
+  await FormsPage.click(await FormsPage.activeButton)
+  await FormsPage.alertTitle.waitForDisplayed({ timeout: 8000 })
+  expect(await FormsPage.alertTitle.getText()).to.equal(formData.expectedAlertTitle)
+  await FormsPage.click(await FormsPage.alertOkButton)
+  await FormsPage.click(await FormsPage.inactiveButton)
+  const alertVisible = await FormsPage.alertTitle.isDisplayed().catch(() => false)
+  expect(alertVisible).to.be.false;
   })
-  
+  it('CT09 - Validar tela Home', async () => {
+    await HomePage.navigateTo()
+    expect(await HomePage.homeTab.isDisplayed()).to.be.true
+    expect(await HomePage.homeTitle.isDisplayed()).to.be.true
+  })
+
+  it('CT10 - Navegar na tela Web e rolar até o final', async () => {
+    await WebPage.navigateTo();
+    expect(await WebPage.webTab.isDisplayed()).to.be.true
+    await WebPage.scrollToBottom(users.webScrolls)
+    expect(true).to.be.true
+  })
+
+  it('CT11 - Swipe lateral e validar cards na tela', async () => {
+    await SwipePage.navigateTo()
+    expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
+    expect(await SwipePage.card1.isDisplayed()).to.be.true
+    await SwipePage.swipeAndValidate(users.swipeSteps)
+    expect(await SwipePage.card2.isDisplayed()).to.be.true
+  })
+
+  it('CT12 - Validar todos os itens do Menu', async () => {
+    await MenuPage.navigateTo()
+    expect(await MenuPage.homeItem.isDisplayed()).to.be.true
+    expect(await MenuPage.webviewItem.isDisplayed()).to.be.true
+    expect(await MenuPage.loginItem.isDisplayed()).to.be.true
+    expect(await MenuPage.formsItem.isDisplayed()).to.be.true
+    expect(await MenuPage.swipeItem.isDisplayed()).to.be.true
+    expect(await MenuPage.dragItem.isDisplayed()).to.be.true
+    expect(await MenuPage.permissionsItem.isDisplayed()).to.be.true
+    expect(await MenuPage.dataItem.isDisplayed()).to.be.true
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 })

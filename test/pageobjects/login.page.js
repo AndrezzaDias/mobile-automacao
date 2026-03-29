@@ -2,11 +2,11 @@ const BasePage = require('./base.page')
 
 class LoginPage extends BasePage {
 
-  get loginTab()     { return $('//android.widget.TextView[@text="Login"]');}
-  get emailField()   { return $('//android.widget.EditText[@content-desc="input-email"]') }
-  get passwordField(){ return $('//android.widget.EditText[@content-desc="input-password"]') }
-  get loginButton()  { return $('//android.view.ViewGroup[@content-desc="button-LOGIN"]') }
-  get signUpLink()   { return $('//android.widget.TextView[@text="Sign up"]') }
+  get loginTab()      {return $('//android.widget.TextView[@text="Login"]');}
+  get emailField()    {return $('//android.widget.EditText[@content-desc="input-email"]') }
+  get passwordField() {return $('//android.widget.EditText[@content-desc="input-password"]') }
+  get loginButton()   {return $('//android.view.ViewGroup[@content-desc="button-LOGIN"]') }
+  get signUpLink()    {return $('//android.widget.TextView[@text="Sign up"]') }
 
   async navigateTo() {
     await this.click(await this.loginTab)
