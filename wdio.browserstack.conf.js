@@ -29,7 +29,7 @@ exports.config = {
       'appium:deviceName':      'Google Pixel 7',
       'appium:platformVersion': '13.0',
       'appium:automationName':  'UiAutomator2',
-      'appium:app':              process.env.BROWSERSTACK_APP_URL,
+      'appium:app': process.env.BROWSERSTACK_APP_URL,
       'bstack:options': {
         projectName:  'Banco Carrefour - Mobile',
         buildName:    'Build_' + new Date().toISOString().slice(0, 10),
