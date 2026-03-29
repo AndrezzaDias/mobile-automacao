@@ -15,7 +15,7 @@ jobs:
   test-android:
     name: Testes Android - BrowserStack
     runs-on: ubuntu-latest
-
+    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -67,7 +67,7 @@ jobs:
 
       - name: Salvar screenshots como artefato
         if: always()
-        uses: images/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: screenshots-android
           path: test/screenshots/
