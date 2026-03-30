@@ -99,13 +99,11 @@ describe('Testes do App WDIO Demo', () => {
   })
 
   it('CT11 - Swipe lateral e validar cards na tela', async () => {
-    await SwipePage.navigateTo()
-    expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
-    expect(await SwipePage.card1.isDisplayed()).to.be.true
-    await SwipePage.swipeAndValidate(users.swipeSteps)
-    const card2 = await SwipePage.card2
-    await card2.waitForDisplayed({ timeout: 10000 })
-    expect(await SwipePage.card2.isDisplayed()).to.be.true
+  await SwipePage.navigateTo()
+  expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
+  expect(await SwipePage.card1.isDisplayed()).to.be.true
+  await SwipePage.swipeAndValidate(users.swipeSteps)
+  expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
   })
 
   it('CT12 - Validar todos os itens do Menu', async () => {

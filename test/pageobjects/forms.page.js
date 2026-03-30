@@ -1,7 +1,7 @@
 const BasePage = require('./base.page')
 
 class FormsPage extends BasePage {
-  get pageTitle()       {return$('//android.widget.TextView[@text="Form components"]')}
+  get pageTitle()       {return $('//android.widget.TextView[@text="Form components"]')}
   get inputField()      {return $('//android.widget.EditText[@content-desc="text-input"]')}
   get inputResult()     {return $('//android.widget.TextView[@content-desc="input-text-result"]')}
   get switchToggle()    {return $('//android.widget.Switch[@content-desc="switch"]') }
