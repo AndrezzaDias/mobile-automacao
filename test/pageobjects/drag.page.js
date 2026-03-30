@@ -2,8 +2,8 @@ const BasePage = require('./base.page')
 
 class DragPage extends BasePage {
 
-  get dragTab() { return $('//android.widget.TextView[@text="Drag"]') }
-  get retryButton() { return $('//android.widget.TextView[@text="Retry"]') }
+  get dragTab()     {return $('//android.widget.TextView[@text="Drag"]')}
+  get retryButton() {return $('//android.widget.TextView[@text="Retry"]')}
 
   async navigateTo() {
     await this.click(await this.dragTab)
@@ -11,7 +11,7 @@ class DragPage extends BasePage {
   }
   async dragAndDropAll() {
 
-    // Peça 1: drag-l2 → quadrado central (9)
+    // Peça 1
     await driver.action('pointer')
       .move({ duration: 0, x: 131, y: 1929 })
       .down({ button: 0 })
@@ -20,7 +20,7 @@ class DragPage extends BasePage {
       .perform();
     await driver.pause(600)
 
-    // Peça 2: drag-r3 → quadrado inferior direito (19)
+    // Peça 2
     await driver.action('pointer')
       .move({ duration: 0, x: 305, y: 1901 })
       .down({ button: 0 })
@@ -29,7 +29,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 3: drag-r1 → quadrado superior direito (7)
+    // Peça 3
     await driver.action('pointer')
       .move({ duration: 0, x: 431, y: 1921 })
       .down({ button: 0 })
@@ -38,7 +38,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 4: drag-c1 → quadrado superior central (5)
+    // Peça 4
     await driver.action('pointer')
       .move({ duration: 0, x: 640, y: 1918 })
       .down({ button: 0 })
@@ -47,7 +47,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 5: drag-c3 → quadrado inferior central (17)
+    // Peça 5
     await driver.action('pointer')
       .move({ duration: 0, x: 805, y: 1938 })
       .down({ button: 0 })
@@ -56,7 +56,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 6: drag-r2 → quadrado central direito (13)
+    // Peça 6
     await driver.action('pointer')
       .move({ duration: 0, x: 965, y: 1921 })
       .down({ button: 0 })
@@ -65,7 +65,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 7: drag-c2 → quadrado central (11)
+    // Peça 7
     await driver.action('pointer')
       .move({ duration: 0, x: 369, y: 2078 })
       .down({ button: 0 })
@@ -74,7 +74,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 8: drag-l1 → quadrado superior esquerdo (3)
+    // Peça 8
     await driver.action('pointer')
       .move({ duration: 0, x: 512, y: 2089 })
       .down({ button: 0 })
@@ -83,7 +83,7 @@ class DragPage extends BasePage {
       .perform()
     await driver.pause(600)
 
-    // Peça 9: drag-l3 → quadrado inferior esquerdo (15)
+    // Peça 9
     await driver.action('pointer')
       .move({ duration: 0, x: 702, y: 2083 })
       .down({ button: 0 })

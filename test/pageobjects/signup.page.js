@@ -1,14 +1,12 @@
 const BasePage = require('./base.page')
 
 class SignUpPage extends BasePage {
-
-  get emailField()            {return $('//android.widget.EditText[@content-desc="input-email"]')}
-  get passwordField()         {return $('//android.widget.EditText[@content-desc="input-password"]')}
-  get confirmPasswordField()  {return $('//android.widget.EditText[@content-desc="input-repeat-password"]')}
-  get signUpButton()          {return $('//android.view.ViewGroup[@content-desc="button-SIGN UP"]')}
+  get emailField()    {return $('//android.widget.EditText[@content-desc="input-email"]')}
+  get passwordField() {return $('//android.widget.EditText[@content-desc="input-password"]')}
+  get confirmPasswordField() {return $('//android.widget.EditText[@content-desc="input-repeat-password"]')}
+  get signUpButton() {return $('//android.view.ViewGroup[@content-desc="button-SIGN UP"]')}
 
   async fillForm(email, password, confirmPassword) {
-    // Aguarda a tela de cadastro carregar completamente
     await driver.pause(1500)
     await this.setValue(await this.emailField, email)
     await this.setValue(await this.passwordField, password)

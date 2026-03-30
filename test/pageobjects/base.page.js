@@ -1,5 +1,4 @@
 class BasePage {
-
   async waitForDisplayed(element, timeout = 30000) {
     await element.waitForDisplayed({ timeout })
   }
@@ -16,7 +15,7 @@ class BasePage {
   }
 
   async hideKeyboard() {
-    try { await driver.hideKeyboard() } catch {}
+    await driver.hideKeyboard()
     await driver.pause(500)
   }
 

@@ -2,14 +2,12 @@ const BasePage = require('./base.page')
 
 class WebPage extends BasePage {
 
-  get webTab()          { return $('//android.widget.TextView[@text="Web"]'); }
-
+  get webTab() {return $('//android.widget.TextView[@text="Web"]')}
 
   async navigateTo() {
-    await this.click(await this.webTab);
-    await driver.pause(3000);
+    await this.click(await this.webTab)
+    await driver.pause(3000)
   }
-
 
   async scrollToBottom(scrolls) {
     for (const s of scrolls) {
@@ -18,8 +16,8 @@ class WebPage extends BasePage {
         .down({ button: 0 })
         .move({ duration: 1000, x: s.x2, y: s.y2 })
         .up({ button: 0 })
-        .perform();
-      await driver.pause(500);
+        .perform()
+      await driver.pause(500)
     }
   }
 }

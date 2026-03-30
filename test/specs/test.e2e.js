@@ -1,18 +1,17 @@
-const { expect }  = require('chai')
-const LoginPage   = require('../pageobjects/login.page')
-const SignUpPage  = require('../pageobjects/signup.page')
-const DragPage    = require('../pageobjects/drag.page')
-const FormsPage   = require('../pageobjects/forms.page')
-const HomePage    = require('../pageobjects/home.page')
-const WebPage     = require('../pageobjects/web.page')
-const SwipePage   = require('../pageobjects/swipe.page')
-const MenuPage    = require('../pageobjects/menu.page')
-const users       = require('../data/users.json')
+const { expect } = require('chai')
+const LoginPage = require('../pageobjects/login.page')
+const SignUpPage = require('../pageobjects/signup.page')
+const DragPage = require('../pageobjects/drag.page')
+const FormsPage = require('../pageobjects/forms.page')
+const HomePage = require('../pageobjects/home.page')
+const WebPage = require('../pageobjects/web.page')
+const SwipePage = require('../pageobjects/swipe.page')
+const MenuPage = require('../pageobjects/menu.page')
+const users = require('../data/users.json')
 
 describe('Testes do App WDIO Demo', () => {
-
   before(async () => {
-    await driver.pause(3000);
+    await driver.pause(3000)
   })
   it('CT01 - Navegar para a tela de Login', async () => {
     await LoginPage.navigateTo()
@@ -22,7 +21,6 @@ describe('Testes do App WDIO Demo', () => {
   it('CT02 - Realizar cadastro com sucesso', async () => {
     await LoginPage.navigateTo()
     await LoginPage.goToSignUp()
-    // Preenche o formulário com dados válidos do JSON
     await SignUpPage.fillForm(
       users.newUser.email,
       users.newUser.password,
@@ -33,61 +31,60 @@ describe('Testes do App WDIO Demo', () => {
   })
 
   users.invalidUsers.forEach((user) => {
-  it(`${user.ct} - Erro ao cadastrar com ${user.descricao}`, async () => {
-    await LoginPage.navigateTo()
-    await driver.pause(1500)
-    await LoginPage.goToSignUp()
-    await driver.pause(2000)
-    await SignUpPage.fillForm(
-      user.email,
-      user.password,
-      user.confirmPassword
-    );
-    const errorText = await SignUpPage.getErrorMessage(user.errorXpath)
-    expect(errorText).to.equal(user.errorMessage)
+    it(`${user.ct} - Erro ao cadastrar com ${user.descricao}`, async () => {
+      await LoginPage.navigateTo()
+      await driver.pause(1500)
+      await LoginPage.goToSignUp()
+      await driver.pause(2000)
+      await SignUpPage.fillForm(
+        user.email,
+        user.password,
+        user.confirmPassword
+      )
+      const errorText = await SignUpPage.getErrorMessage(user.errorXpath)
+      expect(errorText).to.equal(user.errorMessage)
+    })
   })
-})
- it('CT06 - Login com sucesso', async () => {
-  await LoginPage.navigateTo()
-  await LoginPage.login(
-    users.validUser.email,
-    users.validUser.password
-  )
-  const title = await LoginPage.validateSuccessPopup()
-  expect(title).to.equal('Success')
-  await driver.hideKeyboard().catch(() => {})
-  await driver.pressKeyCode(4).catch(() => {}) 
-  await driver.pause(1500)
-})
+  it('CT06 - Login com sucesso', async () => {
+    await LoginPage.navigateTo()
+    await LoginPage.login(
+      users.validUser.email,
+      users.validUser.password
+    )
+    const title = await LoginPage.validateSuccessPopup()
+    expect(title).to.equal('Success')
+    await driver.hideKeyboard().catch(() => { })
+    await driver.pressKeyCode(4).catch(() => { })
+    await driver.pause(1500)
+  })
 
   it('CT07 - Drag and Drop de todas as peças para os destinos corretos', async () => {
-  await DragPage.navigateTo()
-  await DragPage.dragAndDropAll()
-  const retryButton = await DragPage.retryButton
-  await retryButton.waitForDisplayed({ timeout: 30000 })
-  
+    await DragPage.navigateTo()
+    await DragPage.dragAndDropAll()
+    const retryButton = await DragPage.retryButton
+    await retryButton.waitForDisplayed({ timeout: 30000 })
   })
- 
- it('CT08 - Preencher e validar formulário de Forms', async () => {
-  const { formData } = users
-  await FormsPage.navigateTo()
-  expect(await FormsPage.pageTitle.isDisplayed()).to.be.true
-  await FormsPage.setValue(await FormsPage.inputField, formData.inputText)
-  const resultText = await FormsPage.inputResult.getText()
-  expect(resultText).to.equal(formData.expectedResult)
-  await FormsPage.dismissKeyboard()
-  await FormsPage.click(await FormsPage.switchToggle)
-  expect(await FormsPage.switchText.getText()).to.equal(formData.expectedSwitchText)
-  await FormsPage.click(await FormsPage.dropdownChevron)
-  await FormsPage.click(await FormsPage.dropdownOption)
-  await FormsPage.click(await FormsPage.activeButton)
-  await FormsPage.alertTitle.waitForDisplayed({ timeout: 30000 })
-  expect(await FormsPage.alertTitle.getText()).to.equal(formData.expectedAlertTitle)
-  await FormsPage.click(await FormsPage.alertOkButton)
-  await FormsPage.click(await FormsPage.inactiveButton)
-  const alertVisible = await FormsPage.alertTitle.isDisplayed().catch(() => false)
-  expect(alertVisible).to.be.false
-})
+
+  it('CT08 - Preencher e validar formulário de Forms', async () => {
+    const { formData } = users
+    await FormsPage.navigateTo()
+    expect(await FormsPage.pageTitle.isDisplayed()).to.be.true
+    await FormsPage.setValue(await FormsPage.inputField, formData.inputText)
+    const resultText = await FormsPage.inputResult.getText()
+    expect(resultText).to.equal(formData.expectedResult)
+    await FormsPage.dismissKeyboard()
+    await FormsPage.click(await FormsPage.switchToggle)
+    expect(await FormsPage.switchText.getText()).to.equal(formData.expectedSwitchText)
+    await FormsPage.click(await FormsPage.dropdownChevron)
+    await FormsPage.click(await FormsPage.dropdownOption)
+    await FormsPage.click(await FormsPage.activeButton)
+    await FormsPage.alertTitle.waitForDisplayed({ timeout: 30000 })
+    expect(await FormsPage.alertTitle.getText()).to.equal(formData.expectedAlertTitle)
+    await FormsPage.click(await FormsPage.alertOkButton)
+    await FormsPage.click(await FormsPage.inactiveButton)
+    const alertVisible = await FormsPage.alertTitle.isDisplayed().catch(() => false)
+    expect(alertVisible).to.be.false
+  })
   it('CT09 - Validar tela Home', async () => {
     await HomePage.navigateTo()
     expect(await HomePage.homeTab.isDisplayed()).to.be.true
@@ -106,7 +103,6 @@ describe('Testes do App WDIO Demo', () => {
     expect(await SwipePage.pageTitle.isDisplayed()).to.be.true
     expect(await SwipePage.card1.isDisplayed()).to.be.true
     await SwipePage.swipeAndValidate(users.swipeSteps)
-    
     const card2 = await SwipePage.card2
     await card2.waitForDisplayed({ timeout: 10000 })
     expect(await SwipePage.card2.isDisplayed()).to.be.true
@@ -123,19 +119,4 @@ describe('Testes do App WDIO Demo', () => {
     expect(await MenuPage.permissionsItem.isDisplayed()).to.be.true
     expect(await MenuPage.dataItem.isDisplayed()).to.be.true
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 })

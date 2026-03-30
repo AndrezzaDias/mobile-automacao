@@ -3,15 +3,12 @@ const { config: baseConfig } = require('./wdio.base.conf');
 
 exports.config = {
   ...baseConfig,
-
   user: process.env.BROWSERSTACK_USER,
   key:  process.env.BROWSERSTACK_KEY, 
-
   hostname: 'hub.browserstack.com',
   port: 443,
   protocol: 'https',
   path: '/wd/hub',
-
   services: [
     ['browserstack', {
       browserstackLocal: false,
@@ -22,7 +19,6 @@ exports.config = {
       },
     }],
   ],
-  
   capabilities: [
     {
       platformName: 'Android',
