@@ -9,3 +9,4 @@ appium.log
 .DS_Store
 Thumbs.db
 apk/
+.env
